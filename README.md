@@ -35,12 +35,12 @@ This project demonstrates the end-to-end process of transforming a classic trans
 ### 1. Source: Normalized OLTP Schema
 The project starts with the original Pagila database, which is highly normalized (3NF) to ensure data integrity and reduce redundancy for transactional operations.
 
-<img src="https://github.com/NebylytsiaKyrylo/pagila_oltp_to_olap/blob/75dc20e5d294f26495aedeba291bfae8f818e7b3/source_database/normalized-pagila.jpg" alt="Normalized OLTP Schema"/>
+<img src="./source_database/normalized-pagila.jpg" alt="Normalized OLTP Schema"/>
 
 ### 2. Target: Denormalized Star Schema (Sales Data Mart)
 For analytics, the data is remodeled into a Star Schema. This design denormalizes dimensions to reduce complex joins and drastically improve query performance for analytical workloads. This model also incorporates SCD Type 2 principles to track the history of changes in dimensions like customers or stores.
 
-<img src="https://github.com/NebylytsiaKyrylo/pagila_oltp_to_olap/blob/75dc20e5d294f26495aedeba291bfae8f818e7b3/star_schemas_OLAP/1_sales_olap/sales.jpg" alt="Denormalized Star Schema (Sales Data Mart)"/>
+<img src="./star_schemas_OLAP/1_sales_olap/sales.jpg" alt="Denormalized Star Schema (Sales Data Mart)"/>
 
 ## Getting Started
 

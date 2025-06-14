@@ -64,3 +64,8 @@ For analytics, the data is remodeled into a Star Schema. This design denormalize
   - Database: pagila
   - Username: postgres
   - Password: admin
+ 
+## Future Work
+- [ ] Implement the SQL `CREATE TABLE` scripts for the schemas.
+- [ ] Design and implement the "Inventory Factless Fact Table", Flake Schema.
+- [ ] Develop SQL scripts to populate schemas from the source database.

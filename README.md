@@ -1,24 +1,46 @@
-# Pagila OLTP to OLAP Transformation Project
+# Pagila OLTP to OLAP data project
 
-## Project Overview
-This project demonstrates the transformation of the Pagila database (a sample DVD rental database) from an OLTP (Online Transaction Processing) model to an OLAP (Online Analytical Processing) model. The project focuses on dimensional modeling techniques, including star schemas and snowflake schemas, to facilitate data analysis and business intelligence.
+This project demonstrates the end-to-end process of transforming a classic transactional database (OLTP) into an analytical data warehouse (OLAP). Starting with the standard Pagila DVD rental database, this repository contains the dimensional models (Star Schema), the SQL scripts, and a fully containerized environment to reproduce the entire setup.
 
 ## Project Structure
-- `source_database/`: Contains the original OLTP database schema and data
-  - `normalized.drawio`: Database schema diagram in draw.io format
-  - `normalized-pagila.jpg`: Visual representation of the OLTP schema
-  - `pagila-schema.sql`: SQL script to create the database schema
-  - `pagila-data.sql`: SQL script to populate the database with sample data
+```
+.
+├── README.md
+├── docker-compose.yaml                    
+├── source_database              
+│   ├── normalized-pagila.jpg    
+│   ├── normalized.drawio        
+│   ├── pagila-data.sql          
+│   └── pagila-schema.sql        
+└── star_schemas_OLAP            
+    └── 1_sales_olap             
+        ├── sales.drawio         
+        └── sales.jpg            
+     
+```
 
-- `star_schemas_OLAP/`: Contains star schema designs for data marts
-  - `1_sales_olap/`: Sales data mart with star schema design
-    - `sales.drawio`: Star schema diagram for sales in draw.io format
-    - `sales.jpg`: Visual representation of the sales star schema
-  - `2_inventory_factless/`: Planned inventory data mart with factless fact table (in development)
 
-- `flake_schemas_OLAP/`: Planned snowflake schema designs (in development)
+## Key Concepts & Skills Demonstrated
 
-- `docker-compose.yaml`: Configuration for running PostgreSQL and pgAdmin in Docker
+* **Dimensional Modeling**: Designing and implementing data models optimized for business intelligence and analytics.
+* **Star Schema**: Building a simple, high-performance schema with a central fact table and denormalized dimensions.
+* **OLTP vs. OLAP**: Understanding and articulating the architectural differences between transactional and analytical systems.
+* **Data Warehouse Design**: Creating the foundational structures for a data warehouse.
+* **Slowly Changing Dimensions (SCD Type 2)**: Implementing a strategy to track the historical changes of dimension attributes, preserving a full history.
+* **Database Containerization**: Using Docker and Docker Compose to create a reproducible and isolated database environment.
+* **Advanced Modeling Concepts**: Planning for future extensions like Factless Fact Tables and Snowflake Schemas.
+
+## Data Models
+
+### 1. Source: Normalized OLTP Schema
+The project starts with the original Pagila database, which is highly normalized (3NF) to ensure data integrity and reduce redundancy for transactional operations.
+
+<img src="https://github.com/NebylytsiaKyrylo/pagila_oltp_to_olap/blob/75dc20e5d294f26495aedeba291bfae8f818e7b3/source_database/normalized-pagila.jpg" alt="Normalized OLTP Schema"/>
+
+### 2. Target: Denormalized Star Schema (Sales Data Mart)
+For analytics, the data is remodeled into a Star Schema. This design denormalizes dimensions to reduce complex joins and drastically improve query performance for analytical workloads. This model also incorporates SCD Type 2 principles to track the history of changes in dimensions like customers or stores.
+
+<img src="https://github.com/NebylytsiaKyrylo/pagila_oltp_to_olap/blob/75dc20e5d294f26495aedeba291bfae8f818e7b3/star_schemas_OLAP/1_sales_olap/sales.jpg" alt="Denormalized Star Schema (Sales Data Mart)"/>
 
 ## Getting Started
 
@@ -42,34 +64,3 @@ This project demonstrates the transformation of the Pagila database (a sample DV
   - Database: pagila
   - Username: postgres
   - Password: admin
-
-- **pgAdmin**:
-  - URL: http://localhost:5050
-  - Email: admin@admin.com
-  - Password: root
-
-## Dimensional Modeling
-This project demonstrates the transformation from a normalized OLTP database to dimensional models for analytical processing:
-
-### OLTP Model
-The source Pagila database is a normalized OLTP database designed for efficient transaction processing. It contains tables for customers, films, rentals, payments, etc., with relationships designed to minimize data redundancy.
-
-### Star Schema Model
-The star schema model in `star_schemas_OLAP/1_sales_olap/` demonstrates a dimensional model with:
-- A central fact table containing business metrics (e.g., sales amounts)
-- Dimension tables connected directly to the fact table (e.g., time, customer, film)
-
-### Snowflake Schema Model
-The planned snowflake schema model in `flake_schemas_OLAP/` will demonstrate a dimensional model where dimension tables are normalized into multiple related tables.
-
-## Learning Objectives
-- Understand the differences between OLTP and OLAP database designs
-- Practice dimensional modeling techniques
-- Learn how to transform a normalized database into star and snowflake schemas
-- Gain experience with PostgreSQL and Docker
-
-## Contributing
-Feel free to contribute to this project by implementing additional data marts, creating snowflake schemas, or adding analytical queries.
-
-## License
-This project uses the Pagila database, which is available under the PostgreSQL License.

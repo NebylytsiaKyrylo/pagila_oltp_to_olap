@@ -1,0 +1,19 @@
+.
+├── README.md
+├── docker-compose.yaml
+├── flake_schemas_OLAP
+├── project_structure.txt
+├── source_database
+│   ├── normalized-pagila.jpg
+│   ├── normalized.drawio
+│   ├── pagila-data.sql
+│   └── pagila-schema.sql
+└── star_schemas_OLAP
+    ├── 1_sales_olap
+    │   ├── sales.drawio
+    │   └── sales.jpg
+    └── 2_inventory_factless
+        ├── inventory_factless.drawio
+        └── inventory_factless.jpg
+
+6 directories, 11 files

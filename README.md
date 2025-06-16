@@ -13,10 +13,13 @@ This project demonstrates the end-to-end process of transforming a classic trans
 │   ├── pagila-data.sql          
 │   └── pagila-schema.sql        
 └── star_schemas_OLAP            
-    └── 1_sales_olap             
-        ├── sales.drawio         
-        └── sales.jpg            
-     
+    ├── 1_sales_olap             
+    │   ├── sales.drawio         
+    │   └── sales.jpg            
+    └── 2_inventory_factless
+        ├── inventory_factless.drawio
+        └── inventory_factless.jpg
+
 ```
 
 
@@ -42,6 +45,11 @@ For analytics, the data is remodeled into a Star Schema. This design denormalize
 
 <img src="./star_schemas_OLAP/1_sales_olap/sales.jpg" alt="Denormalized Star Schema (Sales Data Mart)"/>
 
+### 3. Inventory Factless Fact Table
+A factless fact table that tracks inventory availability over time. This model allows for analyzing product availability patterns without storing explicit measures, focusing instead on the relationships between dimensions.
+
+<img src="./star_schemas_OLAP/2_inventory_factless/inventory_factless.jpg" alt="Inventory Factless Fact Table"/>
+
 ## Getting Started
 
 ### Prerequisites
@@ -64,7 +72,7 @@ For analytics, the data is remodeled into a Star Schema. This design denormalize
   - Database: pagila
   - Username: postgres
   - Password: admin
- 
+
 ## Future Work
 - [ ] Implement the SQL `CREATE TABLE` scripts for the schemas.
 - [ ] Design and implement the "Inventory Factless Fact Table", Flake Schema.
